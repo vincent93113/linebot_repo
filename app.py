@@ -7,7 +7,6 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
-from flask_ngrok import run_with_ngrok
 
 import tempfile, os
 import datetime
