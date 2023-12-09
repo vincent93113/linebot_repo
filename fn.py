@@ -56,20 +56,10 @@ print(get_dicts('love_kr'))
 
 def flex_func(key):
     dicts = get_dicts(key)
-    # if (key == 'school_us'):
-    #     assign_df = df[(df['country'] == '美國') & (df['category'] == '校園')]
-    # elif (key == 'med_us'):
-    #     assign_df = df[(df['country'] == '美國') & (df['category'] == '醫療')]
-
-    # dicts = []
-    # for index, row in assign_df.iterrows():
-    #     row_dict = row.to_dict()
-    #     dicts.append(row_dict)    
-        
-    flex_content= {
-                        "type": "carousel",
-                        "contents": [
-                            {
+    content_list = []
+    i = 0
+    for each in dicts:
+        each_card = {
                             "type": "bubble",
                             "body": {
                                 "type": "box",
@@ -81,7 +71,7 @@ def flex_func(key):
                                     "aspectMode": "cover",
                                     "aspectRatio": "2:3",
                                     "gravity": "top",
-                                    "url": dicts[0]['photo']
+                                    "url": dicts[i]['photo']
                                 },
                                 {
                                     "type": "box",
@@ -93,7 +83,7 @@ def flex_func(key):
                                         "contents": [
                                         {
                                             "type": "text",
-                                            "text": dicts[0]['name'],
+                                            "text": dicts[i]['name'],
                                             "color": "#ebebeb",
                                             "size": "sm",
                                             "flex": 0
@@ -115,7 +105,7 @@ def flex_func(key):
                                     "contents": [
                                     {
                                         "type": "text",
-                                        "text": dicts[0]['country'],
+                                        "text": dicts[i]['country'],
                                         "color": "#ffffff",
                                         "align": "center",
                                         "size": "xs",
@@ -157,366 +147,21 @@ def flex_func(key):
                                 }
                                 ]
                             }
-                            },
-                            {
-                            "type": "bubble",
-                            "body": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                {
-                                    "type": "image",
-                                    "size": "full",
-                                    "aspectMode": "cover",
-                                    "aspectRatio": "2:3",
-                                    "gravity": "top",
-                                    "url": dicts[1]['photo']
-                                },
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                    {
-                                        "type": "box",
-                                        "layout": "baseline",
-                                        "contents": [
-                                        {
-                                            "type": "text",
-                                            "text": dicts[1]['name'],
-                                            "color": "#ebebeb",
-                                            "size": "sm",
-                                            "flex": 0
-                                        }
-                                        ],
-                                        "spacing": "lg"
-                                    }
-                                    ],
-                                    "position": "absolute",
-                                    "offsetBottom": "0px",
-                                    "offsetStart": "0px",
-                                    "offsetEnd": "0px",
-                                    "paddingAll": "20px",
-                                    "paddingTop": "18px"
-                                },
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": dicts[1]['country'],
-                                        "color": "#ffffff",
-                                        "align": "center",
-                                        "size": "xs",
-                                        "offsetTop": "3px"
-                                    }
-                                    ],
-                                    "position": "absolute",
-                                    "cornerRadius": "20px",
-                                    "offsetTop": "18px",
-                                    "backgroundColor": "#ff334b",
-                                    "offsetStart": "18px",
-                                    "height": "25px",
-                                    "width": "53px"
-                                }
-                                ],
-                                "paddingAll": "0px"
-                            },
-                            "footer": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "data": "getplot1",
-                                    "label": "劇情",
-                                    "displayText": "我想了解劇情"
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "label": "演員",
-                                    "data": "getactor1",
-                                    "displayText": "我想了解演員"
-                                    }
-                                }
-                                ]
                             }
-                            },
-                            {
-                            "type": "bubble",
-                            "body": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                {
-                                    "type": "image",
-                                    "size": "full",
-                                    "aspectMode": "cover",
-                                    "aspectRatio": "2:3",
-                                    "gravity": "top",
-                                    "url": dicts[2]['photo']
-                                },
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                    {
-                                        "type": "box",
-                                        "layout": "baseline",
-                                        "contents": [
-                                        {
-                                            "type": "text",
-                                            "text": dicts[2]['name'],
-                                            "color": "#ebebeb",
-                                            "size": "sm",
-                                            "flex": 0
-                                        }
-                                        ],
-                                        "spacing": "lg"
-                                    }
-                                    ],
-                                    "position": "absolute",
-                                    "offsetBottom": "0px",
-                                    "offsetStart": "0px",
-                                    "offsetEnd": "0px",
-                                    "paddingAll": "20px",
-                                    "paddingTop": "18px"
-                                },
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": dicts[2]['country'],
-                                        "color": "#ffffff",
-                                        "align": "center",
-                                        "size": "xs",
-                                        "offsetTop": "3px"
-                                    }
-                                    ],
-                                    "position": "absolute",
-                                    "cornerRadius": "20px",
-                                    "offsetTop": "18px",
-                                    "backgroundColor": "#ff334b",
-                                    "offsetStart": "18px",
-                                    "height": "25px",
-                                    "width": "53px"
-                                }
-                                ],
-                                "paddingAll": "0px"
-                            },
-                            "footer": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "data": "getplot2",
-                                    "label": "劇情",
-                                    "displayText": "我想了解劇情"
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "label": "演員",
-                                    "data": "getactor2",
-                                    "displayText": "我想了解演員"
-                                    }
-                                }
-                                ]
-                            }
-                            },
-                            {
-                            "type": "bubble",
-                            "body": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                {
-                                    "type": "image",
-                                    "size": "full",
-                                    "aspectMode": "cover",
-                                    "aspectRatio": "2:3",
-                                    "gravity": "top",
-                                    "url":  dicts[3]['photo']
-                                },
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                    {
-                                        "type": "box",
-                                        "layout": "baseline",
-                                        "contents": [
-                                        {
-                                            "type": "text",
-                                            "text": dicts[3]['name'],
-                                            "color": "#ebebeb",
-                                            "size": "sm",
-                                            "flex": 0
-                                        }
-                                        ],
-                                        "spacing": "lg"
-                                    }
-                                    ],
-                                    "position": "absolute",
-                                    "offsetBottom": "0px",
-                                    "offsetStart": "0px",
-                                    "offsetEnd": "0px",
-                                    "paddingAll": "20px",
-                                    "paddingTop": "18px"
-                                },
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": dicts[3]['country'],
-                                        "color": "#ffffff",
-                                        "align": "center",
-                                        "size": "xs",
-                                        "offsetTop": "3px"
-                                    }
-                                    ],
-                                    "position": "absolute",
-                                    "cornerRadius": "20px",
-                                    "offsetTop": "18px",
-                                    "backgroundColor": "#ff334b",
-                                    "offsetStart": "18px",
-                                    "height": "25px",
-                                    "width": "53px"
-                                }
-                                ],
-                                "paddingAll": "0px"
-                            },
-                            "footer": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "data": "getplot3",
-                                    "label": "劇情",
-                                    "displayText": "我想了解劇情"
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "label": "演員",
-                                    "data": "getactor3",
-                                    "displayText": "我想了解演員"
-                                    }
-                                }
-                                ]
-                            }
-                            },
-                            {
-                            "type": "bubble",
-                            "body": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                {
-                                    "type": "image",
-                                    "size": "full",
-                                    "aspectMode": "cover",
-                                    "aspectRatio": "2:3",
-                                    "gravity": "top",
-                                    "url": dicts[4]['photo']
-                                },
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                    {
-                                        "type": "box",
-                                        "layout": "baseline",
-                                        "contents": [
-                                        {
-                                            "type": "text",
-                                            "text": dicts[4]['name'],
-                                            "color": "#ebebeb",
-                                            "size": "sm",
-                                            "flex": 0
-                                        }
-                                        ],
-                                        "spacing": "lg"
-                                    }
-                                    ],
-                                    "position": "absolute",
-                                    "offsetBottom": "0px",
-                                    "offsetStart": "0px",
-                                    "offsetEnd": "0px",
-                                    "paddingAll": "20px",
-                                    "paddingTop": "18px"
-                                },
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": dicts[4]['country'],
-                                        "color": "#ffffff",
-                                        "align": "center",
-                                        "size": "xs",
-                                        "offsetTop": "3px"
-                                    }
-                                    ],
-                                    "position": "absolute",
-                                    "cornerRadius": "20px",
-                                    "offsetTop": "18px",
-                                    "backgroundColor": "#ff334b",
-                                    "offsetStart": "18px",
-                                    "height": "25px",
-                                    "width": "53px"
-                                }
-                                ],
-                                "paddingAll": "0px"
-                            },
-                            "footer": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "data": "getplot4",
-                                    "label": "劇情",
-                                    "displayText": "我想了解劇情"
-                                    }
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "postback",
-                                    "label": "演員",
-                                    "data": "getactor4",
-                                    "displayText": "我想了解演員"
-                                    }
-                                }
-                                ]
-                            }
-                            }
-                        ]
-                        }
+        content_list.append(each_card)
+        i = i+1
+
+
+
+
+    flex_content= {
+                        "type": "carousel",
+                        "contents": content_list
+    }
+
     return flex_content
+
+
 
 # print(flex_func('med_us'))
 
