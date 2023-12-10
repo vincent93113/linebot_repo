@@ -120,7 +120,7 @@ def flex_func(key):
                                     "type": "button",
                                     "action": {
                                     "type": "postback",
-                                    "data": "getplot0",
+                                    "data": "getplot"+str(i),
                                     "label": "劇情",
                                     "displayText": "我想了解劇情"
                                     }
@@ -130,7 +130,7 @@ def flex_func(key):
                                     "action": {
                                     "type": "postback",
                                     "label": "演員",
-                                    "data": "getactor0",
+                                    "data": "getactor"+str(i),
                                     "displayText": "我想了解演員"
                                     }
                                 }
