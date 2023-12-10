@@ -10,17 +10,6 @@ YOUR_SHEET_ID='11FqGhLV_j1d4D-oWnF4-sXiSxpWg5ZfynOf2LijDmDQ'
 r = requests.get(f'https://docs.google.com/spreadsheet/ccc?key={YOUR_SHEET_ID}&output=csv')
 open('dataset.csv', 'wb').write(r.content)
 df = pd.read_csv('dataset.csv')
-# df = df.head()
-
-# school_us_df = df[(df['country'] == '美國') & (df['category'] == '校園')]
-
-
-# school_us_dicts = []
-# for index, row in school_us_df.iterrows():
-#     row_dict = row.to_dict()
-#     school_us_dicts.append(row_dict)
-
-# print(df)
 
 
 
@@ -163,9 +152,6 @@ def flex_func(key):
 
 
 
-# print(flex_func('med_us'))
-
-
 
 
 
@@ -193,58 +179,6 @@ def item_func(country):
     
     return items
 
-# items_us=[
-#                         QuickReplyButton(
-#                             action=PostbackAction(label="醫療片", data="med_us",text="我想看醫療片")
-#                         ),
-#                         QuickReplyButton(
-#                             action=PostbackAction(label="校園片", data="school_us",text="我想看校園片")
-#                         ),
-#                         QuickReplyButton(
-#                             action=PostbackAction(label="愛情片", data="love_us",text="我想看愛情片")
-#                         ),
-#                         QuickReplyButton(
-#                             action=PostbackAction(label="喜劇片", data="comedy_us",text="我想看喜劇片")
-#                         ),
-#                         QuickReplyButton(
-#                             action=PostbackAction(label="法政片", data="law_us",text="我想看法政片")
-#                         ),
-                        
-#                     ]
-
-
-
-
-
-
-# def Carousel_Template():
-#     message = TemplateSendMessage(
-#             alt_text='test',
-#             template=CarouselTemplate(
-#                 columns=[
-#                     CarouselColumn(
-#                         thumbnail_image_url='https://img.freepik.com/free-photo/sky-clouds-cinematic-clouds-wallpaper-7_1562-744.jpg',
-#                         title='Testing',
-#                         text='website',
-#                         actions=[
-#                             URIAction(
-#                                 label='GOOGLE',
-#                                 uri='https://www.google.com'
-#                             ),
-#                             URIAction(
-#                                 label='YOUTUBE',
-#                                 uri='https://www.youtube.com'
-#                             ),
-#                             URIAction(
-#                                 label='NETFLIX',
-#                                 uri='https://www.netflix.com'
-#                             ),                           
-#                         ]
-#                     ),
-#                 ]
-#             )
-#         )
-#     return message
 
 
 def image_carousel_message():
@@ -272,37 +206,4 @@ def image_carousel_message():
     return message
 
 
-# def buttons_message():
-#     message = TemplateSendMessage(
-#         alt_text='好消息來囉～',
-#         template=ButtonsTemplate(
-#             thumbnail_image_url="https://img.freepik.com/free-photo/sky-clouds-cinematic-clouds-wallpaper-7_1562-744.jpg",
-#             title="test1",
-#             text="test2",
-#             actions=[
-#                 DatetimePickerTemplateAction(
-#                     label="請選擇生日",
-#                     data="input_birthday",
-#                     mode='date',
-#                     initial='1990-01-01',
-#                     max='2019-03-10',
-#                     min='1930-01-01'
-#                 ),
-#                 MessageTemplateAction(
-#                     label="HI",
-#                     text="HELLO"
-#                 ),
-#                 URITemplateAction(
-#                     label="網址",
-#                     uri="https://www.google.com"
-#                 )
-#             ]
-#         )
-#     )
-#     return message
-
-
-
-
-print(flex_func('school_us'))
 
