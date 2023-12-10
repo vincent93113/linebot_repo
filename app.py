@@ -21,8 +21,6 @@ dicts = []
 
 line_bot_api = LineBotApi(os.getenv('LINE_CHANNEL_ACCESS_TOKEN'))
 handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET'))
-# line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
-# handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 app = Flask(__name__)
 
@@ -140,7 +138,6 @@ def handle_message(event):
         recieved_msg = event.message.text
         if '韓劇' in recieved_msg:
             country = 'kr'
-            # print(item_func(country))
             message = TextSendMessage(text='那你想看哪種韓劇呢?',quick_reply=item_func(country))
             line_bot_api.reply_message(event.reply_token,message)
         elif '美劇' in recieved_msg:
@@ -156,9 +153,7 @@ def handle_message(event):
             message = TextSendMessage(text='嗨 要我推薦你影集的話可以按下方按鈕或輸入 韓劇 or 美劇 ')
 
             line_bot_api.reply_message(event.reply_token,message)
-        # elif 'test' in recieved_msg:
-        #     message = FlexSendMessage(alt_text='hello',contents=flex_content)
-        #     line_bot_api.reply_message(event.reply_token,message)
+
     elif event_type == 'image':
         message = TextSendMessage(text='這是圖片')
         line_bot_api.reply_message(event.reply_token, message)
