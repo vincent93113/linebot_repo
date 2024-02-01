@@ -2,7 +2,8 @@ Flask==2.2.2
 line-bot-sdk==2.4.2
 python-dotenv
 pandas
-gspread
+python_version >= "3.8"
+gspread==3.7.0 
 gspread-dataframe
 oauth2client
 oauthlib
