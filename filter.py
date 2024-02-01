@@ -4,16 +4,36 @@ from linebot.models import *
 import pandas as pd
 import requests
 import json
-
-YOUR_SHEET_ID='11FqGhLV_j1d4D-oWnF4-sXiSxpWg5ZfynOf2LijDmDQ'
-
-r = requests.get(f'https://docs.google.com/spreadsheet/ccc?key={YOUR_SHEET_ID}&output=csv')
-open('dataset.csv', 'wb').write(r.content)
-df = pd.read_csv('dataset.csv')
-
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import pandas as pd
+from app import *
+from crud import *
 
 
+
+
+
+credentials = ServiceAccountCredentials.from_json_keyfile_name('sheet-api-412107-d39a802a3637.json', ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'])
+
+gc = gspread.authorize(credentials)
+
+spreadsheet = gc.open('series_db')
+spreadsheet2 = gc.open('collect_db')
+worksheet1 = spreadsheet.sheet1
+worksheet2 = spreadsheet2.sheet1
+data1 = worksheet1.get_all_values()
+data2 = worksheet2.get_all_values()
+col_df = pd.DataFrame(columns = data2[0],data=data2[1:])
+df = pd.DataFrame(columns = data1[0],data=data1[1:])
+
+
+
+
+
+#4
 def get_dicts(key):
+
     if  (key == 'school_us'):
         assign_df = df[(df['country'] == '美國') & (df['category'] == '校園')]
     elif (key == 'med_us'):
@@ -41,11 +61,34 @@ def get_dicts(key):
         dicts.append(row_dict)
     return dicts    
 
-print(get_dicts('love_kr'))
+#2
+def item_func(country):
 
+    items=QuickReply([
+                            QuickReplyButton(
+                                action=PostbackAction(label="醫療片", data=f"med_{country}",text="我想看醫療片")
+                            ),
+                            QuickReplyButton(
+                                action=PostbackAction(label="校園片", data=f"school_{country}",text="我想看校園片")
+                            ),
+                            QuickReplyButton(
+                                action=PostbackAction(label="愛情片", data=f"love_{country}",text="我想看愛情片")
+                            ),
+                            QuickReplyButton(
+                                action=PostbackAction(label="喜劇片", data=f"comedy_{country}",text="我想看喜劇片")
+                            ),
+                            QuickReplyButton(
+                                action=PostbackAction(label="法政片", data=f"law_{country}",text="我想看法政片")
+                            ),
+                            
+                        ])
+    
+    return items
+
+#5
 def flex_func(key):
     dicts = get_dicts(key)
-    content_list = []
+    content_list = [] #為了routine做flexmessage
     i = 0
     for each in dicts:
         each_card = {
@@ -133,6 +176,15 @@ def flex_func(key):
                                     "data": "getactor"+str(i),
                                     "displayText": "我想了解演員"
                                     }
+                                },
+                                {
+                                    "type": "button",
+                                    "action": {
+                                    "type": "postback",
+                                    "label": "收藏",
+                                    "data": "collect"+str(i),
+                                    "displayText": "我要收藏此劇"
+                                    }
                                 }
                                 ]
                             }
@@ -151,37 +203,6 @@ def flex_func(key):
     return flex_content
 
 
-
-
-
-
-
-def item_func(country):
-
-    items=QuickReply([
-                            QuickReplyButton(
-                                action=PostbackAction(label="醫療片", data=f"med_{country}",text="我想看醫療片")
-                            ),
-                            QuickReplyButton(
-                                action=PostbackAction(label="校園片", data=f"school_{country}",text="我想看校園片")
-                            ),
-                            QuickReplyButton(
-                                action=PostbackAction(label="愛情片", data=f"love_{country}",text="我想看愛情片")
-                            ),
-                            QuickReplyButton(
-                                action=PostbackAction(label="喜劇片", data=f"comedy_{country}",text="我想看喜劇片")
-                            ),
-                            QuickReplyButton(
-                                action=PostbackAction(label="法政片", data=f"law_{country}",text="我想看法政片")
-                            ),
-                            
-                        ])
-    
-    return items
-
-
-
-def image_carousel_message():
     message = TemplateSendMessage(
         alt_text='泡麵推薦',
         template=ImageCarouselTemplate(
@@ -204,6 +225,5 @@ def image_carousel_message():
         )
     )
     return message
-
 
 
